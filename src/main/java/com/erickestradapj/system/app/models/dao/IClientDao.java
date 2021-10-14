@@ -8,4 +8,6 @@ public interface IClientDao {
     List<Client> findAll();
 
     void save(Client client);
+
+    Client findById(Long id);
 }

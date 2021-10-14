@@ -31,6 +31,12 @@
     <div class="container">
         <h1 class="my-3" th:text="${title}"></h1>
 
+        <div th:object="${client}" th:remove="tag">
+            <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <li th:each="err : ${#fields.errors()}" th:text="${err}"></li>
+            </ul>
+        </div>
+
         <form th:action="@{/form}" th:object="${client}" method="post">
             <div class="mb-3">
                 <label for="firstname" class="form-label">First Name</label>
