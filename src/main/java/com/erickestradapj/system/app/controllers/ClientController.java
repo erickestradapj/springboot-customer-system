@@ -1,12 +1,15 @@
 package com.erickestradapj.system.app.controllers;
 
-import com.erickestradapj.system.app.models.dao.IClientDao;
 import com.erickestradapj.system.app.models.entity.Client;
+import com.erickestradapj.system.app.services.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
@@ -17,12 +20,12 @@ import java.util.Map;
 public class ClientController {
 
     @Autowired
-    private IClientDao clientDao;
+    private IClientService clientService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("title", "Customer List");
-        model.addAttribute("clients", clientDao.findAll());
+        model.addAttribute("clients", clientService.findAll());
 
         return "list";
     }
@@ -42,7 +45,7 @@ public class ClientController {
         Client client = null;
 
         if (id > 0) {
-            client = clientDao.findById(id);
+            client = clientService.findById(id);
         } else {
             return "redirect:/list";
         }
@@ -55,7 +58,7 @@ public class ClientController {
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id) {
         if (id > 0) {
-            clientDao.delete(id);
+            clientService.delete(id);
         }
 
         return "redirect:/list";
@@ -68,7 +71,7 @@ public class ClientController {
             return "form";
         }
 
-        clientDao.save(client);
+        clientService.save(client);
         status.setComplete();
         return "redirect:/list";
     }

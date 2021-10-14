@@ -1,11 +1,10 @@
-package com.erickestradapj.system.app.models.dao;
+package com.erickestradapj.system.app.services;
 
 import com.erickestradapj.system.app.models.entity.Client;
 
 import java.util.List;
 
-public interface IClientDao {
-
+public interface IClientService {
     List<Client> findAll();
 
     void save(Client client);
@@ -14,4 +13,3 @@ public interface IClientDao {
 
     void delete(Long id);
 }
-
