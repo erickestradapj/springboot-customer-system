@@ -42,6 +42,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Create at</th>
                     <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +52,8 @@
                     <td th:text="${client.lastName}"></td>
                     <td th:text="${client.email}"></td>
                     <td th:text="${client.createAt}"></td>
-                    <td><a th:href="@{'/form/' + ${client.id}}" class="btn btn-primary">Edit</a></td>
+                    <td><a th:href="@{'/form/' + ${client.id}}" class="btn btn-warning">Edit</a></td>
+                    <td><a th:href="@{'/delete/' + ${client.id}}" class="btn btn-danger">Delete</a></td>
                 </tr>
             </tbody>
         </table>
