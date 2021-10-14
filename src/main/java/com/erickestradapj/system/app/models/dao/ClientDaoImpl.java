@@ -14,9 +14,15 @@ public class ClientDaoImpl implements IClientDao {
     @PersistenceContext
     private EntityManager em;
 
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public List<Client> findAll() {
         return em.createQuery("FROM Client").getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void save(Client client) {
+        em.persist(client);
     }
 }

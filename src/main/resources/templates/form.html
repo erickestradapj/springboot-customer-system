@@ -28,34 +28,37 @@
         </div>
     </nav>
 
-
     <div class="container">
-        <h1 class="text-secondary">Client List</h1>
+        <h1 class="my-3" th:text="${title}"></h1>
 
-        <hr class="border border-success">
+        <form th:action="@{/form}" th:object="${client}" method="post">
+            <div class="mb-3">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstname" th:field="*{firstName}">
+            </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Create at</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="client: ${clients}">
-                    <th scope="row" th:text="${client.id}"></th>
-                    <td th:text="${client.firstName}"></td>
-                    <td th:text="${client.lastName}"></td>
-                    <td th:text="${client.email}"></td>
-                    <td th:text="${client.createAt}"></td>
-                </tr>
-            </tbody>
-        </table>
-        <a th:href="@{/form}" class="btn btn-primary">Create client</a>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}">
+            </div>
+
+            <div class="mb-3">
+                <label for="createAt" class="form-label">Date</label>
+                <input type="date" class="form-control" id="createAt" th:field="*{createAt}">
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Create client</button>
+                <a th:href="@{/list}" class="btn btn-warning">Go back</a>
+            </div>
+        </form>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>

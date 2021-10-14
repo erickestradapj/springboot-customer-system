@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IClientDao {
     List<Client> findAll();
+
+    void save(Client client);
 }
