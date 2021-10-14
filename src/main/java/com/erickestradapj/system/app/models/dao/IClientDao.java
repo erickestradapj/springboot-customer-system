@@ -1,17 +1,9 @@
 package com.erickestradapj.system.app.models.dao;
 
 import com.erickestradapj.system.app.models.entity.Client;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+public interface IClientDao extends CrudRepository<Client, Long> {
 
-public interface IClientDao {
-
-    List<Client> findAll();
-
-    void save(Client client);
-
-    Client findById(Long id);
-
-    void delete(Long id);
 }
 
