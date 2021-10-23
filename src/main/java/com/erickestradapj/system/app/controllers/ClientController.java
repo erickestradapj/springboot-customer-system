@@ -99,8 +99,7 @@ public class ClientController {
         }
 
         if (!photo.isEmpty()) {
-            Path pathResources = Paths.get("src//main//resources//static/uploads");
-            String rootPath = pathResources.toFile().getAbsolutePath();
+            String rootPath = "D://Temp//uploads";
             try {
                 byte[] bytes = photo.getBytes();
                 Path pathComplete = Paths.get(rootPath + "//" + photo.getOriginalFilename());
