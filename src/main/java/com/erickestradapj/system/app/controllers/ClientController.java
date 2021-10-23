@@ -29,6 +29,22 @@ public class ClientController {
     @Autowired
     private IClientService clientService;
 
+    @GetMapping(value = "/view/{id}")
+    public String watch(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+
+        Client client = clientService.findById(id);
+
+        if (client == null) {
+            flash.addFlashAttribute("error", "Client doesn't exist in DB");
+            return "redirect:/list";
+        }
+
+        model.addAttribute("client", client);
+        model.addAttribute("title", "Customer detail: " + client.getFirstName());
+
+        return "watch";
+    }
+
     @RequestMapping(value = "/list")
     public String list(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
