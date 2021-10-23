@@ -9,14 +9,14 @@ import java.util.List;
 
 @Service
 public class ClientServiceImpl implements IClientService {
-
+    
     @Autowired
     private IClientDao clientDao;
 
     @Override
 
     public List<Client> findAll() {
-        return (List<Client>) clientDao.findAll();
+        return clientDao.findAll();
     }
 
     @Override
@@ -26,11 +26,11 @@ public class ClientServiceImpl implements IClientService {
 
     @Override
     public Client findById(Long id) {
-        return clientDao.findById(id).orElse(null);
+        return clientDao.findById(id);
     }
 
     @Override
     public void delete(Long id) {
-        clientDao.deleteById(id);
+        clientDao.delete(id);
     }
 }
