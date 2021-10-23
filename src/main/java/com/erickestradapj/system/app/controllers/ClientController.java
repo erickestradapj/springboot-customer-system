@@ -30,7 +30,7 @@ public class ClientController {
     private IClientService clientService;
 
     @GetMapping(value = "/view/{id}")
-    public String watch(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+    public String view(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 
         Client client = clientService.findById(id);
 
@@ -42,7 +42,7 @@ public class ClientController {
         model.addAttribute("client", client);
         model.addAttribute("title", "Customer detail: " + client.getFirstName());
 
-        return "watch";
+        return "view";
     }
 
     @RequestMapping(value = "/list")
@@ -86,8 +86,8 @@ public class ClientController {
             return "redirect:/list";
         }
 
-        model.addAttribute("title", "Edit Client");
         model.addAttribute("client", client);
+        model.addAttribute("title", "Edit Client");
         return "form";
     }
 
